@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/vi")
+@RequestMapping("/api/v1")
 public class MessageJsonController {
 
     private RabbitMQJsonProducer jsonProducer;
@@ -19,9 +19,8 @@ public class MessageJsonController {
     }
 
     @PostMapping("/publish")
-    public ResponseEntity<String> sendJsonMessage
-            (@RequestBody User user) {
+    public ResponseEntity<String> sendJsonMessage(@RequestBody User user){
         jsonProducer.sendJsonMessage(user);
-        return ResponseEntity.ok("Json message sent to RabbitMQ...");
+        return ResponseEntity.ok("Json message sent to RabbitMQ ...");
     }
 }
