@@ -12,7 +12,7 @@ public class RabbitMQProducer {
     @Value("${rabbitmq.exchange.name}")
     private String exchange;
 
-    @Value("${rabbitmq.routing.name}")
+    @Value("${rabbitmq.routing.key}")
     private String routingKey;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQProducer.class);
@@ -23,9 +23,8 @@ public class RabbitMQProducer {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(String message){
         LOGGER.info(String.format("Message sent -> %s", message));
         rabbitTemplate.convertAndSend(exchange, routingKey, message);
     }
-
 }
